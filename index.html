@@ -1,411 +1,188 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Custom CS2 Crosshairs | Personal Vault</title>
-    <!-- Tailwind CSS CDN -->
+    <title>CS2 Crosshair Roulette</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        csdark: '#0f172a',
-                        cscard: '#1e293b',
-                        csaccent: '#22c55e', // Neon green
-                        csyellow: '#eab308',
-                        csborder: '#334155'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        darkBg: '#080c14',
+                        cardBg: '#101726',
+                        cardBorder: '#1e293b',
+                        accent: '#ff5722',
+                        accentHover: '#f4511e'
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-        }
-        .bg-grid-pattern {
-            background-size: 30px 30px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
-    </style>
 </head>
-<body class="min-h-screen bg-grid-pattern flex flex-col selection:bg-green-500 selection:text-black">
+<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col font-sans selection:bg-accent selection:text-white">
 
-    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Header -->
+    <header class="border-b border-cardBorder bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-green-900/40">
-                    <i class="fa-solid fa-crosshairs text-slate-950 text-xl"></i>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-amber-600 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-accent/20">
+                    CS
                 </div>
                 <div>
-                    <span class="text-xl font-black tracking-wider text-white">MY<span class="text-green-500">CROSSHAIRS</span></span>
-                    <span class="block text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Custom Made For You</span>
+                    <h1 class="font-black tracking-wider text-white text-lg uppercase">Crosshair Roulette</h1>
+                    <p class="text-xs text-slate-400">Cycle through the list</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="openModal('instructionsModal')" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-medium border border-slate-700 transition">
-                    <i class="fa-solid fa-circle-question text-green-400"></i>
-                    <span>How to Import</span>
-                </button>
+            <div class="flex items-center space-x-2 bg-cardBg border border-cardBorder px-3 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="counter-indicator" class="text-xs font-medium text-slate-300">1 / 6</span>
             </div>
         </div>
     </header>
 
-    <section class="relative py-16 lg:py-24 overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-900/50 to-transparent">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900/10 via-transparent to-transparent pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-            <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 text-xs font-semibold mb-6">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
-                <span>My Personal Crosshair Vault</span>
-            </span>
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6">
-                HANDCRAFTED CS2 <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">RETICLES</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg mb-8">
-                Hey! Here are all the custom crosshairs I've been tweaking and testing. Just click copy command on any of them to instantly grab it and paste it into your game.
-            </p>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-xl w-full mx-auto px-6 py-12 flex flex-col items-center justify-center">
+        
+        <!-- Roulette Machine Box -->
+        <div class="w-full bg-cardBg border border-cardBorder rounded-3xl p-8 shadow-2xl relative overflow-hidden text-center">
             
-            <!-- Search & Filters -->
-            <div class="max-w-3xl mx-auto flex flex-col sm:flex-row gap-4 items-center">
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <input type="text" id="searchInput" oninput="filterCrosshairs()" placeholder="Search by name, style, or notes..." class="w-full pl-11 pr-4 py-3.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition text-sm shadow-inner">
-                </div>
+            <!-- Glow background effect -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="mb-6">
+                <span id="crosshair-tag" class="text-[10px] font-bold uppercase tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-800/50 px-3 py-1 rounded-md">Precision</span>
+                <h2 id="crosshair-name" class="text-3xl font-black text-white mt-3">Clean Cyan Dot</h2>
+                <p id="crosshair-desc" class="text-slate-400 text-sm mt-2">Crisp cyan center dot built for sharp accuracy and tiny target identification at long range.</p>
             </div>
 
-            <!-- Filter Tags -->
-            <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-                <button onclick="setFilter('all')" id="filter-all" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-green-500 text-slate-950 transition">All Mine</button>
-                <button onclick="setFilter('rifling')" id="filter-rifling" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Rifling / Spray</button>
-                <button onclick="setFilter('tapping')" id="filter-tapping" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Tap / One-Tap</button>
-                <button onclick="setFilter('dot')" id="filter-dot" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Pure Dot</button>
-                <button onclick="setFilter('fun')" id="filter-fun" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Fun / Weird</button>
+            <!-- Hidden Code Box -->
+            <div class="bg-slate-950/80 border border-cardBorder rounded-xl p-4 mb-6 flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span class="tracking-widest text-slate-600 truncate pr-2">••••••••••••••••••••••••••••••••</span>
+                <span class="text-emerald-400 shrink-0 font-sans text-xs font-semibold bg-emerald-950/50 border border-emerald-800/40 px-2.5 py-1 rounded">Hidden</span>
             </div>
-        </div>
-    </section>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <div class="flex items-center justify-between mb-8">
-            <h2 class="text-xl font-bold text-white flex items-center space-x-2">
-                <i class="fa-solid fa-code-merge text-green-500"></i>
-                <span>Available Custom Reticles</span>
-            </h2>
-            <span id="resultsCount" class="text-xs font-medium text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">Showing all items</span>
-        </div>
+            <!-- Buttons -->
+            <div class="space-y-3">
+                <button id="spin-btn" onclick="nextCrosshair()" 
+                    class="w-full bg-slate-800 hover:bg-slate-700 text-white font-extrabold py-4 px-6 rounded-2xl text-base transition-all border border-slate-700 shadow-lg active:scale-[0.98] flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                    <span>Next Crosshair</span>
+                </button>
 
-        <div id="crosshairGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamically populated by JS -->
+                <button id="copy-btn" onclick="copyCurrentCommand()" 
+                    class="w-full bg-accent hover:bg-accentHover text-white font-bold py-4 px-6 rounded-2xl text-base transition-all shadow-lg shadow-accent/25 active:scale-[0.98] flex items-center justify-center space-x-2 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Copy Command</span>
+                </button>
+            </div>
+
         </div>
     </main>
 
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-12 text-slate-400 text-sm mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center font-bold">CS2</div>
-                <span class="text-xs text-slate-400">Custom Crosshair Showcase — Built for sharing with friends.</span>
-            </div>
-            <div class="flex items-center space-x-6 text-xs font-medium">
-                <button onclick="openModal('instructionsModal')" class="hover:text-white transition">Import Instructions</button>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer class="border-t border-cardBorder py-6 text-center text-xs text-slate-500">
+        <p>CS2 Crosshair Roulette • Sequential Vault</p>
     </footer>
 
-    <div id="instructionsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
-            <button onclick="closeModal('instructionsModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="flex items-center space-x-3 mb-6">
-                <div class="w-10 h-10 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-circle-info"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white">How to Import My Commands</h3>
-                    <p class="text-xs text-slate-400">Quick steps to test these crosshairs in CS2</p>
-                </div>
-            </div>
-
-            <div class="space-y-4 text-sm text-slate-300">
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
-                    <span class="block font-semibold text-green-400 mb-1">Method 1: In-Game Settings</span>
-                    <ol class="list-decimal list-inside space-y-1 text-xs text-slate-400">
-                        <li>Open CS2 Settings &gt; Game &gt; Crosshair.</li>
-                        <li>Click <b>Share / Import</b>.</li>
-                        <li>Paste the copied command and hit Import!</li>
-                    </ol>
-                </div>
-
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
-                    <span class="block font-semibold text-green-400 mb-1">Method 2: Console</span>
-                    <ol class="list-decimal list-inside space-y-1 text-xs text-slate-400">
-                        <li>Open console (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-green-300">~</code>).</li>
-                        <li>Paste the code directly and press Enter.</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="mt-8 flex justify-end">
-                <button onclick="closeModal('instructionsModal')" class="px-5 py-2.5 bg-green-500 hover:bg-green-400 text-slate-950 font-bold text-xs rounded-xl transition">Got it!</button>
-            </div>
-        </div>
+    <!-- Floating Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl font-bold text-sm transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3 z-50 border border-emerald-500/40">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        <span>Command Copied to Clipboard!</span>
     </div>
 
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-slate-900 border border-green-500/40 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-lg bg-green-500 text-slate-950 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-check"></i>
-        </div>
-        <div>
-            <span class="block text-xs font-bold text-green-400">Copied!</span>
-            <span id="toastMsg" class="text-xs text-slate-300">Command ready to paste in CS2</span>
-        </div>
-    </div>
-
+    <!-- Script -->
     <script>
-        // My Custom Crosshairs Database (Codes are kept hidden from the UI display)
-        const crosshairsData = [
+        const crosshairs = [
             {
-                id: 1,
-                name: "Crispy Tap Master",
-                category: "tapping",
-                notes: "Super crisp for one-deags and stationary headshots on Mirage.",
-                color: "#22c55e",
-                size: 2,
-                thickness: 0.8,
-                gap: -4,
-                dot: true,
-                tStyle: false,
-                alpha: 1.0,
-                code: "CSGO-7vFzN-dKq8p-Lw9Zx-2bN6m-MyCr1"
+                name: "Clean Cyan Dot",
+                tag: "Precision",
+                tagColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800/50",
+                desc: "Crisp cyan center dot built for sharp accuracy and tiny target identification at long range.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 4; cl_crosshairdot 1; cl_crosshairgap -4; cl_crosshairsize 1; cl_crosshairstyle 4; cl_crosshairthickness 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1;"
             },
             {
-                id: 2,
-                name: "Heavy Spray Beamer",
-                category: "rifling",
-                notes: "Wider gap and thick lines so you never lose track during full AK spray downs.",
-                color: "#00ffff",
-                size: 3.5,
-                thickness: 1.2,
-                gap: -1,
-                dot: false,
-                tStyle: false,
-                alpha: 0.9,
-                code: "CSGO-Kj98p-Zw2Qx-4vN7m-8Lp1s-MySpr"
+                name: "Classic Green Cross",
+                tag: "Standard",
+                tagColor: "text-emerald-400 bg-emerald-950/60 border-emerald-800/50",
+                desc: "Traditional style 4 green crosshair balanced ideally for smooth spray control and general rifles.",
+                command: "cl_crosshairalpha 250; cl_crosshaircolor 1; cl_crosshairdot 0; cl_crosshairgap -3; cl_crosshairsize 2; cl_crosshairstyle 4; cl_crosshairthickness 0.5; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1;"
             },
             {
-                id: 3,
-                name: "Minimalist Cyan Dot",
-                category: "dot",
-                notes: "Just a clean dot. Amazing contrast against dust and skyboxes.",
-                color: "#00ffff",
-                size: 1,
-                thickness: 1.5,
-                gap: -6,
-                dot: true,
-                tStyle: true,
-                alpha: 1.0,
-                code: "CSGO-9pZq2-Lw4Km-8vN7x-3Z1df-MyDot"
+                name: "High-Vis Yellow",
+                tag: "Vibrant",
+                tagColor: "text-amber-400 bg-amber-950/60 border-amber-800/50",
+                desc: "Bright high-visibility yellow crosshair engineered never to blend into bright map backgrounds.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 2; cl_crosshairdot 0; cl_crosshairgap -2; cl_crosshairsize 2.5; cl_crosshairstyle 4; cl_crosshairthickness 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1;"
             },
             {
-                id: 4,
-                name: "Retro 1.6 T-Style",
-                category: "rifling",
-                notes: "Removed top line for maximum visibility when holding tight angles.",
-                color: "#eab308",
-                size: 3,
-                thickness: 1,
-                gap: -3,
-                dot: false,
-                tStyle: true,
-                alpha: 0.85,
-                code: "CSGO-4mQz8-Vw7Kp-2nL9x-5Z3df-MyTee"
+                name: "Compact Static",
+                tag: "Compact",
+                tagColor: "text-purple-400 bg-purple-950/60 border-purple-800/50",
+                desc: "Super compact static cross built explicitly for strict tap-shooting and counter-strafing accuracy.",
+                command: "cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "0.3"; cl_crosshair_dynamic_splitalpha_innermod "1"; cl_crosshair_dynamic_splitalpha_outermod "0.45"; cl_crosshair_dynamic_spread_limit "255"; bind "e" "play \sounds\ambient\canals\music_canals_01"; cl_crosshair_dynamic_splitdist "9"; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "255"; play \sounds\vo\hostage\huse\hostage_breath cl_crosshaircolor_g "89"; cl_crosshaircolor_r "255"; cl_crosshairdot "0"; bind "r" play \sounds\ambient\common\energy\tv_static_01; cl_crosshairsize "11"; cl_crosshairstyle "3"; play \sounds\ambient\de_inferno_children; cl_crosshairthickness "1"; cl_crosshair_recoil "0";"
             },
             {
-                id: 5,
-                name: "Neon Pink Laser",
-                category: "fun",
-                notes: "High visibility pink. Stands out brilliantly on Inferno and Nuke.",
-                color: "#ec4899",
-                size: 2.5,
-                thickness: 1,
-                gap: -2.5,
-                dot: false,
-                tStyle: false,
-                alpha: 0.9,
-                code: "CSGO-5mQz9-Vw2Kp-8nL1x-3Z7df-MyPNK"
+                name: "T-Style Red Dot",
+                tag: "Special",
+                tagColor: "text-rose-400 bg-rose-950/60 border-rose-800/50",
+                desc: "Open-top T-style red crosshair offering completely unobstructed view directly above the target.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 0; cl_crosshairdot 0; cl_crosshairgap -3; cl_crosshairsize 2; cl_crosshairstyle 4; cl_crosshairthickness 1; cl_crosshair_t 1; cl_crosshair_drawoutline 1;"
             },
             {
-                id: 6,
-                name: "Micro Sniping Dot",
-                category: "tapping",
-                notes: "Tiny crosshair for holding pixel angles with Scout or AWP.",
-                color: "#ffffff",
-                size: 1.5,
-                thickness: 0.5,
-                gap: -5,
-                dot: true,
-                tStyle: false,
-                alpha: 1.0,
-                code: "CSGO-1pZq9-Km2Lw-4vN8x-7Z3df-MyWHT"
+                name: "Tiny White Box",
+                tag: "Minimalist",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
             }
         ];
 
-        let currentFilter = 'all';
+        let currentIndex = 0;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            renderCrosshairs(crosshairsData);
-        });
+        function updateDisplay() {
+            const item = crosshairs[currentIndex];
+            document.getElementById('crosshair-name').textContent = item.name;
+            document.getElementById('crosshair-desc').textContent = item.desc;
+            const tagEl = document.getElementById('crosshair-tag');
+            tagEl.textContent = item.tag;
+            tagEl.className = `text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border ${item.tagColor}`;
+            document.getElementById('counter-indicator').textContent = `${currentIndex + 1} / ${crosshairs.length}`;
+        }
 
-        function renderCrosshairs(data) {
-            const grid = document.getElementById('crosshairGrid');
-            const countLabel = document.getElementById('resultsCount');
-            countLabel.textContent = `Showing ${data.length} crosshairs`;
+        function nextCrosshair() {
+            currentIndex = (currentIndex + 1) % crosshairs.length;
+            updateDisplay();
+        }
 
-            if (data.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-16 text-center bg-slate-900/40 rounded-2xl border border-slate-800">
-                        <i class="fa-solid fa-ghost text-4xl text-slate-600 mb-3"></i>
-                        <p class="text-slate-400 font-medium">No crosshairs found matching your search.</p>
-                    </div>
+        function copyCurrentCommand() {
+            const item = crosshairs[currentIndex];
+
+            navigator.clipboard.writeText(item.command).then(() => {
+                const copyBtn = document.getElementById('copy-btn');
+                const originalHTML = copyBtn.innerHTML;
+
+                copyBtn.innerHTML = `
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Copied to Clipboard!</span>
                 `;
-                return;
-            }
+                copyBtn.classList.remove('bg-accent', 'hover:bg-accentHover');
+                copyBtn.classList.add('bg-emerald-600');
 
-            grid.innerHTML = data.map(item => {
-                const sizePx = item.size * 4;
-                const thickPx = Math.max(1, item.thickness * 2);
-                const gapPx = item.gap * 3;
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-24', 'opacity-0');
 
-                return `
-                    <div class="bg-slate-900/90 rounded-2xl border border-slate-800 hover:border-slate-700 transition duration-300 p-6 flex flex-col justify-between group shadow-xl">
-                        <div>
-                            <div class="flex items-start justify-between mb-2">
-                                <h3 class="font-bold text-white text-lg group-hover:text-green-400 transition">${item.name}</h3>
-                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[10px] font-semibold text-green-400 border border-slate-700 uppercase tracking-wider">${item.category}</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mb-4 italic">"${item.notes}"</p>
-
-                            <!-- Preview Box -->
-                            <div class="w-full h-44 rounded-xl relative flex items-center justify-center overflow-hidden border border-slate-800/80 mb-6 bg-gradient-to-br from-slate-950 to-slate-900">
-                                <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none"></div>
-                                <div class="absolute w-20 h-20 rounded-full border border-slate-700/50 flex items-center justify-center pointer-events-none">
-                                    <div class="w-2 h-2 rounded-full bg-slate-700/40"></div>
-                                </div>
-
-                                <div class="relative flex items-center justify-center" style="opacity: ${item.alpha};">
-                                    ${item.dot ? `<div class="absolute rounded-full" style="background-color: ${item.color}; width: ${thickPx+1}px; height: ${thickPx+1}px;"></div>` : ''}
-                                    <div class="absolute" style="background-color: ${item.color}; width: ${sizePx}px; height: ${thickPx}px; right: ${6 + Math.abs(gapPx)}px; top: -${thickPx/2}px;"></div>
-                                    <div class="absolute" style="background-color: ${item.color}; width: ${sizePx}px; height: ${thickPx}px; left: ${6 + Math.abs(gapPx)}px; top: -${thickPx/2}px;"></div>
-                                    <div class="absolute" style="background-color: ${item.color}; width: ${thickPx}px; height: ${sizePx}px; top: ${6 + Math.abs(gapPx)}px; left: -${thickPx/2}px;"></div>
-                                    ${!item.tStyle ? `<div class="absolute" style="background-color: ${item.color}; width: ${thickPx}px; height: ${sizePx}px; bottom: ${6 + Math.abs(gapPx)}px; left: -${thickPx/2}px;"></div>` : ''}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-center">
-                            <button onclick="copyToClipboard('${item.code}', '${item.name}', this)" class="w-full py-2.5 bg-slate-800 hover:bg-green-500 hover:text-slate-950 text-slate-200 text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 border border-slate-700 group-hover:border-green-500/50 shadow-md">
-                                <i class="fa-regular fa-copy"></i>
-                                <span>Copy Command</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function setFilter(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-green-500', 'text-slate-950');
-                btn.classList.add('bg-slate-800', 'text-slate-300');
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('bg-emerald-600');
+                    copyBtn.classList.add('bg-accent', 'hover:bg-accentHover');
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
             });
-            const activeBtn = document.getElementById(`filter-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
-                activeBtn.classList.add('bg-green-500', 'text-slate-950');
-            }
-            filterCrosshairs();
-        }
-
-        function filterCrosshairs() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = crosshairsData.filter(item => {
-                const matchesCategory = currentFilter === 'all' || item.category === currentFilter;
-                const matchesQuery = item.name.toLowerCase().includes(query) || item.notes.toLowerCase().includes(query);
-                return matchesCategory && matchesQuery;
-            });
-            renderCrosshairs(filtered);
-        }
-
-        function copyToClipboard(text, name, btnElement) {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast(name);
-                    triggerButtonFeedback(btnElement);
-                }).catch(() => fallbackCopy(text, name, btnElement));
-            } else {
-                fallbackCopy(text, name, btnElement);
-            }
-        }
-
-        function fallbackCopy(text, name, btnElement) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showToast(name);
-                triggerButtonFeedback(btnElement);
-            } catch (err) {
-                console.error('Failed to copy', err);
-            }
-            document.body.removeChild(textArea);
-        }
-
-        function triggerButtonFeedback(btn) {
-            if (!btn) return;
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-check text-slate-950"></i><span>Command Copied!</span>`;
-            btn.classList.add('bg-green-500', 'text-slate-950', 'border-green-400');
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.classList.remove('bg-green-500', 'text-slate-950', 'border-green-400');
-            }, 2000);
-        }
-
-        function showToast(name) {
-            const toast = document.getElementById('toast');
-            const msg = document.getElementById('toastMsg');
-            msg.textContent = `"${name}" command ready to paste!`;
-            toast.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-32', 'opacity-0');
-            }, 3000);
-        }
-
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-        }
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
         }
     </script>
 </body>
