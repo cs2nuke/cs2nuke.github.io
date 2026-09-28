@@ -67,7 +67,7 @@
             <!-- Buttons -->
             <div class="space-y-3">
                 <button id="spin-btn" onclick="nextCrosshair()" 
-                    class="w-full bg-slate-800 hover:bg-slate-700 text-white font-extrabold py-4 px-6 rounded-2xl text-base transition-all border border-slate-700 shadow-lg active:scale-[0.98] flex items-center justify-center space-x-2">
+                    class="w-full bg-slate-800 hover:bg-slate-700 text-white font-extrabold py-4 px-6 rounded-2xl text-base transition-all border border-slate-700 shadow-lg active:scale-[0.98] flex items-center justify-center space-x-2 cursor-pointer">
                     <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
                     <span>Next Crosshair</span>
                 </button>
@@ -122,7 +122,7 @@
                 tag: "Compact",
                 tagColor: "text-purple-400 bg-purple-950/60 border-purple-800/50",
                 desc: "Super compact static cross built explicitly for strict tap-shooting and counter-strafing accuracy.",
-                command: "cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "0.3"; cl_crosshair_dynamic_splitalpha_innermod "1"; cl_crosshair_dynamic_splitalpha_outermod "0.45"; cl_crosshair_dynamic_spread_limit "255"; bind "e" "play \sounds\ambient\canals\music_canals_01"; cl_crosshair_dynamic_splitdist "9"; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "255"; play \sounds\vo\hostage\huse\hostage_breath cl_crosshaircolor_g "89"; cl_crosshaircolor_r "255"; cl_crosshairdot "0"; bind "r" play \sounds\ambient\common\energy\tv_static_01; cl_crosshairsize "11"; cl_crosshairstyle "3"; play \sounds\ambient\de_inferno_children; cl_crosshairthickness "1"; cl_crosshair_recoil "0";"
+                command: 'cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "0.3"; cl_crosshair_dynamic_splitalpha_innermod "1"; cl_crosshair_dynamic_splitalpha_outermod "0.45"; cl_crosshair_dynamic_spread_limit "255"; cl_crosshair_dynamic_splitdist "9"; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "255"; cl_crosshaircolor_g "89"; cl_crosshaircolor_r "255"; cl_crosshairdot "0"; cl_crosshairsize "11"; cl_crosshairstyle "3"; cl_crosshairthickness "1"; cl_crosshair_recoil "0";'
             },
             {
                 name: "T-Style Red Dot",
