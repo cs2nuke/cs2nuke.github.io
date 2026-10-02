@@ -97,29 +97,29 @@
     <script>
         const crosshairs = [
             {
-                name: "Clean Cyan Dot",
+                name: "The Reckoning",
                 tag: "Precision",
                 tagColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800/50",
                 desc: "Crisp cyan center dot built for sharp accuracy and tiny target identification at long range.",
-                command: "cl_crosshairalpha 255; cl_crosshaircolor 4; cl_crosshairdot 1; cl_crosshairgap -4; cl_crosshairsize 1; cl_crosshairstyle 4; cl_crosshairthickness 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1;"
+                command: `cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "1"; cl_crosshair_dynamic_splitalpha_innermod "0"; cl_crosshair_dynamic_splitalpha_outermod "1"; cl_crosshair_dynamic_spread_limit "255"; cl_crosshair_dynamic_splitdist "3"; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "0"; cl_crosshaircolor_g "17"; cl_crosshaircolor_r "255"; cl_crosshairdot "1"; cl_crosshair_gap "128"; cl_crosshairsize "255"; cl_crosshairstyle "3"; cl_crosshairthickness "31"; cl_crosshair_recoil "0"; cl_crosshairoutline_r "0"; cl_crosshairoutline_g "0"; cl_crosshairoutline_b "0"; cl_crosshairoutline_a "255"; cl_ironsight_dot_scale "1"; cl_ironsight_usecrosshaircolor "0"`
             },
             {
-                name: "Classic Green Cross",
-                tag: "Standard",
+                name: "Classic Clown",
+                tag: "Goofy",
                 tagColor: "text-emerald-400 bg-emerald-950/60 border-emerald-800/50",
                 desc: "Traditional style 4 green crosshair balanced ideally for smooth spray control and general rifles.",
-                command: "cl_crosshairalpha 250; cl_crosshaircolor 1; cl_crosshairdot 0; cl_crosshairgap -3; cl_crosshairsize 2; cl_crosshairstyle 4; cl_crosshairthickness 0.5; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1;"
+                command: `cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "1"; cl_crosshair_dynamic_splitalpha_innermod "0"; cl_crosshair_dynamic_splitalpha_outermod "1"; cl_crosshair_dynamic_spread_limit "3"; cl_crosshair_dynamic_splitdist "0"; cl_crosshair_t "1"; cl_crosshairalpha "255"; cl_crosshaircolor_b "0"; cl_crosshaircolor_g "0"; cl_crosshaircolor_r "255"; cl_crosshairdot "1"; cl_crosshair_gap "4"; cl_crosshairsize "12"; cl_crosshairstyle "7"; cl_crosshairthickness "2"; cl_crosshair_recoil "0"; cl_crosshairoutline_r "0"; cl_crosshairoutline_g "0"; cl_crosshairoutline_b "0"; cl_crosshairoutline_a "255"; cl_ironsight_dot_scale "1"; cl_ironsight_usecrosshaircolor "0"`
             },
             {
-                name: "High-Vis Yellow",
+                name: "Estrogen en Español",
                 tag: "Vibrant",
                 tagColor: "text-amber-400 bg-amber-950/60 border-amber-800/50",
                 desc: "Bright high-visibility yellow crosshair engineered never to blend into bright map backgrounds.",
                 command: `cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "0.3"; cl_crosshair_dynamic_splitalpha_innermod "1"; cl_crosshair_dynamic_splitalpha_outermod "0.45";  alias "nb" "buymenu; play \sounds\ambient\common\animal\horse_4"; cl_crosshair_dynamic_spread_limit "255"; alias "mew" "say meow :3; play \sounds\ambient\common\animal\cat_04"; bind "f" mew;  bind "e" "play \sounds\ambient\canals\music_canals_01"; cl_crosshair_dynamic_splitdist "9"; bind b nb; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "255"; play \sounds\vo\hostage\huse\hostage_breath cl_crosshaircolor_g "89"; cl_crosshaircolor_r "255"; cl_crosshairdot "0"; bind "e" play \sounds\ambient\common\energy\tv_static_01; cl_crosshairsize "11"; cl_crosshairstyle "3"; play \sounds\ambient\de_inferno_children; cl_crosshairthickness "1"; cl_crosshair_recoil "0";`
             },
             {
-                name: "Compact Static",
-                tag: "Compact",
+                name: "Compact Booty CRUSHER",
+                tag: "EBS69",
                 tagColor: "text-purple-400 bg-purple-950/60 border-purple-800/50",
                 desc: "Super compact static cross built explicitly for strict tap-shooting and counter-strafing accuracy.",
                 command: 'cl_crosshair_drawoutline "1"; cl_crosshair_dynamic_maxdist_splitratio "0.3"; cl_crosshair_dynamic_splitalpha_innermod "1"; cl_crosshair_dynamic_splitalpha_outermod "0.45"; cl_crosshair_dynamic_spread_limit "255"; cl_crosshair_dynamic_splitdist "9"; cl_crosshair_t "0"; cl_crosshairalpha "255"; cl_crosshaircolor_b "255"; cl_crosshaircolor_g "89"; cl_crosshaircolor_r "255"; cl_crosshairdot "0"; cl_crosshairsize "11"; cl_crosshairstyle "3"; cl_crosshairthickness "1"; cl_crosshair_recoil "0";'
@@ -134,6 +134,48 @@
             {
                 name: "Tiny White Box",
                 tag: "Minimalist",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "TinyTim",
+                tag: "Entry-Fragger",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "Bosnian Beluga",
+                tag: "Imposter",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "Funktown Femboys",
+                tag: "Hot & Steamy",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "Netanyahu's REVENGE!",
+                tag: "Promised 3000 Years Ago",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "Five Freddy's Bear (from fortnite)",
+                tag: "Spooky",
+                tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
+                desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
+                command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
+            },
+            {
+                name: "Fortnite Frotting",
+                tag: "Paddington Runtime",
                 tagColor: "text-slate-300 bg-slate-800/60 border-slate-700/50",
                 desc: "Micro white cross designed for pure pixel-hunting and absolute minimalist performance.",
                 command: "cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 1; cl_crosshairgap -5; cl_crosshairsize 0.5; cl_crosshairstyle 4; cl_crosshairthickness 1.5; cl_crosshair_drawoutline 1;"
